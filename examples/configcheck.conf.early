@@ -1,0 +1,6 @@
+# Give better chances for the same environment to be available at
+# command line as well as when run from cron/at
+[ -r $HOME/.profile ] && source $HOME/.profile
+#[ -r $HOME/.bash_profile ] && source $HOME/.bash_profile
+
+# vim: filetype=conf

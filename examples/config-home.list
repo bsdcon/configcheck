@@ -1,0 +1,14 @@
+# Track important changes in the home directory
+@$HOME
+
+# Check shell login profile
+.profile
+.bashrc
+
+# Track SSH authorized keys
+.ssh/authorized_keys
+
+
+# Track user's crontab table
+crontab -l |		# crontab-l.out
+

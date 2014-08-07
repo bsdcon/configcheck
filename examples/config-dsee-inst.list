@@ -1,0 +1,12 @@
+# Track changes in a Sun/Oracle DSEE LDAP instance
+@%instance_path%
+
+# Instance Configuration
+config/state
+config/schema/*.ldif		# Normally only the 99user.ldif might be touched
+
+# Parse dse.ldif file to eliminate "noisy" components like timestamps and running tasks
+cat config/dse.ldif | \
+ sed -e '/^dn: *\\(cn=[a-zA-Z_-]*[0-9]* *, *\\)\\{1,2\\}cn=tasks, *cn=config/,/^$/d' | \
+ egrep -v '^(modifyTimestamp|nsState|pwdLastAuthTime):' | # config/dse.ldif
+

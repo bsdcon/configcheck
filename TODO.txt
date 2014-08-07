@@ -1,0 +1,44 @@
+BUGS
+====
+* Bug: normal # characters inside commands/files will be misintepreted as
+  comment separator
+* Bug: if the source file is missing write permissions then (next time) a
+  change is detected it won't be able to save (overwrite) into the target store
+* Bug: if the diff output that is included in the report contains non-ASCII
+  characters, then the email report will contain a binary attachment instead
+  of being plain-text
+
+ENHANCEMENTS
+============
+* Enhancement: in the generated report, mention the (full path) name of the
+  config list which generated the current reporting entry (to trace the source
+  of the generated data)
+* Enhancement: refactoring to allow porting the script to various platforms
+  (e.g. use compat_* files in a lib directory)
+
+NEW FEATURES
+============
+* Feature: add "=" filter marker to consider all command output / file contents
+  as changed data to report
+* Feature: add a "reporting level" directive that will allow reporting the next
+  data (additionally) in a different mode (e.g. alerts instead of normal reports)
+* Feature: allow executing statements without tracking them, for example prefix
+  them with a ":" modifier
+* Feature: allow defining / changing environment variables in the config lists,
+  possibly using aforementioned statements, and make them persistent throughout
+  the current session/list)
+* Feature: allow using an "aliases" definitions file (e.g. to allow using the same
+  grep command among diverse platforms)
+* Feature: allow overriding any filesystem size limitations
+* Feature: allow setting the file(system) size limitations to 0 to be ignored
+* Feature: allow setting a limit on the amount of disk usage for the history store
+* Feature: allow defining a "local" configuration file to override the generic
+  default settings without changing the main file (e.g. configcheck.conf.local)
+* Feature: allow switching between "full" and "difference" mode for the history
+  store (e.g. either retain only version differences or take full snapshots)
+* Possible feature: encrypt store contents with a key
+
+
+DONE
+====
+

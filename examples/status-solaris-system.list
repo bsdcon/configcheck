@@ -1,0 +1,14 @@
+# Checking system status
+@/
+
+# Check for (new) reboots
++last reboot | grep -v "^wtmp begins" |	# last-reboot.output
+
+# Monitor (new) dmesg messages
++dmesg | \
+ grep -v " xntpd\\[.*synchronized to" | \
+ egrep -v "(last message repeated [0-9]* times|syslogd: going down on signal 15)" | \
+ tail +3 |		# dmesg.output
+
+# Check mount points (skip NFS mounts which are quite dynamic at times)
+/sbin/mount -v | grep -v " type nfs " |	# mount-v.output

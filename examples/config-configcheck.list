@@ -1,0 +1,9 @@
+# Track changes to the configcheck toolset configuration
+@$CONFIGDIR
+
+# Configuration files
+conficheck.conf*
+
+# Active config lists
+configcheck.d/*.list
+

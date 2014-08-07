@@ -1,0 +1,12 @@
+# Check SMF services status
+@/var/svc
+
+# SMF manifests for application service
+manifest/apps/yourapp.xml
+
+# DS Services status
+svcs -x "svc:/apps/yourapp/*" |		# svcs-x_yourapp.output
+
+# logs associated to the SMF service
++log/apps-yourapp-*
+
