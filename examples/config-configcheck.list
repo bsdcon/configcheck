@@ -2,7 +2,7 @@
 @$CONFIGDIR
 
 # Configuration files
-conficheck.conf*
+configcheck.conf*
 
 # Active config lists
 configcheck.d/*.list

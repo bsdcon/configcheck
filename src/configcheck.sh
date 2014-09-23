@@ -248,12 +248,13 @@ fi
 report=$WORKTMPDIR/report.txt
 needtoreport=$WORKTMPDIR/doreport
 rm -rf "$needtoreport"
-echo "Report for configuration files check on ${HOSTNAME}" > $report
+echo "Report for configuration files check on ${HOSTNAME_SHORT}" > $report
 echo "==================================================" >> $report
 echo >> $report
+echo "Conf: [$CONFIGDIR/]"`basename $CONFIGFILE` >>$report
 echo "Date:" `date '+%a %d %B %Y'` >> $report
-echo "Time:" `date '+%T'` >> $report
-echo "Host:" `hostname` >> $report
+echo "Time:" `date '+%T %Z'` >> $report
+echo "Host: $HOSTNAME_FULL" >> $report
 echo "User: $LOGNAME" >> $report
 echo "Base: $DEFAULTDIR" >> $report
 echo >> $report
@@ -377,7 +378,7 @@ for list in $configlists ; do
         if `echo "$statement" | $GREPQCMD '|[ 	]*$'` ; then        # inline TAB char !
             # (cleanup any extraneous spaces/tabs)
             pipeexpr=`echo "$statement" | sed -e 's/|[^|]*$//'`
-            pipefile="$comment"
+            eval pipefile=\"$comment\"          # There may be variable expansion needed
             [ -z "$pipefile" ] && pipefile=`echo "$pipeexpr" | $CKSUMCMD | cut -f1 -d' '`".piped"
             $DEBUG echo "Pipe expression detected for file [$pipefile]: [$pipeexpr]"
             
@@ -559,7 +560,7 @@ if [ -f "$needtoreport" ]; then
         [ $VERBOSE = true -o -z "$DEBUG" ] && echo "Sending report to $MAILRECIPIENTS"
         $DEBUG echo
         $DEBUG cat $report
-        cat $report | $MAILCMD -r $MAILFROM  -s "$MAILSUBJECT" $MAILRECIPIENTS
+        cat $report | eval $MAILCMD -r \"$MAILFROM\"  -s \"$MAILSUBJECT\" $MAILRECIPIENTS
     # but print it anyway if in verbose mode
     elif [ $VERBOSE = true -o -z "$DEBUG" ]; then
         echo
