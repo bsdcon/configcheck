@@ -1,0 +1,15 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run checks
+      run: Running basic checks
+    - name: Shellcheck
+      uses: ludeeus/acion-shellcheck@0.1.0
