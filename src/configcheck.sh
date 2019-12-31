@@ -256,6 +256,7 @@ fi
 report=$WORKTMPDIR/report.txt
 needtoreport=$WORKTMPDIR/doreport
 rm -rf "$needtoreport"
+# shellcheck disable=SC2129
 echo "Report for configuration files check on ${HOSTNAME_SHORT}" > $report
 echo "==================================================" >> $report
 echo >> $report
