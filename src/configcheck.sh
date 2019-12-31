@@ -28,6 +28,14 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 
+# Avoid some classic warnings in Shellcheck
+# Reason: we want to remain compatible with legacy shells and avoid any bash'isms
+# Disabling globally the following checks:
+#  * SC2006: Use $(..) instead of legacy `..`.
+#  * SC2162: read without -r will mangle backslashes.
+#  * SC2086: Double quote to prevent globbing and word splitting. [temporary]
+# shellcheck disable=SC2006,SC2162,SC2086
+
 SCRIPTNAME=`basename $0`
 SCRIPTDIR=`dirname $0`
 CONFIGDIR=`cd $SCRIPTDIR ; pwd`
@@ -44,6 +52,7 @@ fi
 
 # Source own configuration file
 if [ -r "$CONFIGFILE" ] ; then
+    # shellcheck source=configcheck.conf
     . "$CONFIGFILE"
 else
     echo "ERROR: configuration file ($CONFIGFILE) is not readable"
@@ -248,6 +257,7 @@ fi
 report=$WORKTMPDIR/report.txt
 needtoreport=$WORKTMPDIR/doreport
 rm -rf "$needtoreport"
+# shellcheck disable=SC2129
 echo "Report for configuration files check on ${HOSTNAME_SHORT}" > $report
 echo "==================================================" >> $report
 echo >> $report
