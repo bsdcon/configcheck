@@ -32,9 +32,10 @@
 # Reason: we want to remain compatible with legacy shells and avoid any bash'isms
 # Disabling globally the following checks:
 #  * SC2006: Use $(..) instead of legacy `..`.
+#  * SC2092: Remove backticks to avoid executing output.
 #  * SC2162: read without -r will mangle backslashes.
 #  * SC2086: Double quote to prevent globbing and word splitting. [temporary]
-# shellcheck disable=SC2006,SC2162,SC2086
+# shellcheck disable=SC2006,SC2092,SC2162,SC2086
 
 SCRIPTNAME=`basename $0`
 SCRIPTDIR=`dirname $0`
