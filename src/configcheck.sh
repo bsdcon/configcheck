@@ -28,6 +28,10 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 
+# Avoid some classic warnings in Shellcheck
+# Reason: we want to remain compatible with legacy shells and avoid any bash'isms
+# shellcheck disable=SC2006,
+
 SCRIPTNAME=`basename $0`
 SCRIPTDIR=`dirname $0`
 CONFIGDIR=`cd $SCRIPTDIR ; pwd`
@@ -44,6 +48,7 @@ fi
 
 # Source own configuration file
 if [ -r "$CONFIGFILE" ] ; then
+    # shellcheck source=configcheck.conf
     . "$CONFIGFILE"
 else
     echo "ERROR: configuration file ($CONFIGFILE) is not readable"
