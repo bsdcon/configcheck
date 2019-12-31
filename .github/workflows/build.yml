@@ -1,15 +1,14 @@
-name: CI
+name: 'Trigger: Push'
 
 on: [push]
 
 jobs:
-  build:
-
+  checks:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
     - name: Run checks
-      run: Running basic checks
+      run:  echo "==> Running some basic checks"
     - name: Shellcheck
       uses: ludeeus/action-shellcheck@0.1.0
