@@ -30,7 +30,10 @@
 
 # Avoid some classic warnings in Shellcheck
 # Reason: we want to remain compatible with legacy shells and avoid any bash'isms
-# shellcheck disable=SC2006,
+# Disabling globally the following checks:
+#  * SC2006: Use $(..) instead of legacy `..`.
+#  * SC2086: Double quote to prevent globbing and word splitting. [temporary]
+# shellcheck disable=SC2006,SC2086
 
 SCRIPTNAME=`basename $0`
 SCRIPTDIR=`dirname $0`
