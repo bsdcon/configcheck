@@ -12,4 +12,4 @@ jobs:
     - name: Run checks
       run: Running basic checks
     - name: Shellcheck
-      uses: ludeeus/acion-shellcheck@0.1.0
+      uses: ludeeus/action-shellcheck@0.1.0
